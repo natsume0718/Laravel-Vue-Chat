@@ -8,19 +8,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        #chat-area{
+           overflow: scroll;
+           height:70vh;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="row" id="app">
-            <ul class="list-group offset-4 col-4">
+            <div class="offset-4 col-4">
                 <li class="list-group-item active">Chat Room</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-                <input type="text" class="form-controll" placeholder="メッセージ">
-            </ul>
+                <ul class="list-group" id="chat-area" v-chat-scroll >
+                    <message color='warning' v-for="(value,index) in chat.message" :key="index">@{{ value }}</message>
+                </ul>
+                <input type="text" class="form-controll" placeholder="メッセージ" v-model="message" v-on:keyup.enter='send'>
+            </div>
         </div>
     </div>
 
