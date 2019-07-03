@@ -44746,6 +44746,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         className: function className() {
             return 'list-group-item-' + this.color;
+        },
+        badgeName: function badgeName() {
+            return 'badge-' + this.color;
         }
     }
 });
@@ -44766,9 +44769,7 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _c("small", { staticClass: "badge float-left badge-danger" }, [
-      _vm._v("you")
-    ])
+    _c("small", { staticClass: "badge float-left" }, [_vm._v("you")])
   ])
 }
 var staticRenderFns = []

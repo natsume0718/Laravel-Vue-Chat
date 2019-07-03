@@ -3,7 +3,7 @@
         <li class="list-group-item" :class="className">
             <slot></slot>
         </li>
-        <small class="badge float-left badge-danger">you</small>
+        <small class="badge float-left" :class="">you</small>
     </div>
 </template>
 
@@ -18,6 +18,9 @@
         computed: {
             className() {
                 return 'list-group-item-' + this.color;
+            },
+            badgeName(){
+                return 'badge-'+this.color;
             }
 
         },
