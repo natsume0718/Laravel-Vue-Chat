@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('chat');
-});
+Route::get('/', \App\Http\Actions\ChatSendAction::class);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
