@@ -47,6 +47,7 @@ import Echo from 'laravel-echo'
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
+    authEndpoint: 'https://natsume.site/laravel-chat/public/broadcasting/auth',
     broadcaster: 'pusher',
     key: '87f879470d989992a032',
     cluster: 'ap3',

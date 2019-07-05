@@ -1,28 +1,20 @@
 <template>
-    <div>
-        <li class="list-group-item" :class="className">
-            <slot></slot>
-        </li>
-        <small class="badge float-left" :class="">you</small>
+  <div>
+    <div class="d-flex justify-content-start mb-4">
+      <div class="img_cont_msg">
+        <img src class="rounded-circle user_img_msg" />
+        <span>{{ user }}</span>
+      </div>
+      <div class="msg_cotainer">
+        <slot></slot>
+        <span class="msg_time">Today</span>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        props: [
-            'color'
-        ],
-        mounted() {
-            console.log("Component mounted.");
-        },
-        computed: {
-            className() {
-                return 'list-group-item-' + this.color;
-            },
-            badgeName(){
-                return 'badge-'+this.color;
-            }
-
-        },
-    };
+export default {
+  props: ["user"]
+};
 </script>
