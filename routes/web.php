@@ -13,10 +13,10 @@
 |
 */
 
-Route::get('/send', \App\Http\Actions\ChatSendAction::class);
+Route::post('/send', \App\Http\Actions\ChatSendAction::class);
 Route::get('/', function () {
     return view('chat');
-});
+})->middleware('auth');
 Route::get('/home', function () {
     return view('home');
 });

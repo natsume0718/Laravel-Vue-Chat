@@ -33,9 +33,7 @@ class ChatSendResponder
             return $this->response;
         }
 
-        $this->response->setContent(
-            $this->view->make('chat', ['data' => $data])
-        );
+        $this->response->setContent($data);
         return $this->response;
     }
 }

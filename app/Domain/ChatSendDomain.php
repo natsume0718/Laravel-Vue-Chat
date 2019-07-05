@@ -9,19 +9,12 @@ use App\Events\ChatEvent;
 
 class ChatSendDomain
 {
-    // public function send(Request $request)
-    // {
-    //     $user = Auth::user();
-
-    //     $message = $request->message;
-
-    //     event(new ChatEvent($message, $user));
-    // }
-    public function send()
+    public function send(Request $request)
     {
         $user = Auth::user();
-        $message = 'Hello';
 
-        event(new ChatEvent($message, $user));
+        $message = $request->message;
+
+        return event(new ChatEvent($message, $user));
     }
 }

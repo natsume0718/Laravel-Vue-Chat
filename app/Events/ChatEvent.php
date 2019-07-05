@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\User;
 
 class ChatEvent implements ShouldBroadcast
 {
@@ -21,10 +22,11 @@ class ChatEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(String $message, $user)
+    public function __construct(String $message, User $user)
     {
         $this->message = $message;
-        $this->user = $user;
+        $this->user = $user->name;
+        $this->dontBroadcastToCurrentUser();
     }
 
     /**

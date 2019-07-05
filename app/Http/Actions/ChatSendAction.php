@@ -16,6 +16,7 @@ class ChatSendAction extends Controller
 
     public function __construct(Domain $Domain, Responder $Responder)
     {
+        $this->middleware('auth');
         $this->Domain     = $Domain;
         $this->Responder  = $Responder;
     }
@@ -26,9 +27,8 @@ class ChatSendAction extends Controller
      */
     public function __invoke(Request $request): Response
     {
-
         return $this->Responder->response(
-            $this->Domain->send()
+            $this->Domain->send($request)
         );
     }
 }
