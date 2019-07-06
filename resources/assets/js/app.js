@@ -2,7 +2,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import Vue from 'vue';
-
+//スクロール用
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
 
@@ -15,32 +15,41 @@ const app = new Vue({
             message: '',
             chat: {
                 message: [],
+                user: [],
+                time: []
             }
         }
     },
     methods: {
         send() {
-            if (this.message.length > 0) {
+            if (this.message.length > 1) {
                 this.chat.message.push(this.message);
+                this.chat.user.push('you');
+                this.chat.time.push(this.getTime());
 
                 axios.post('send', {
                         message: this.message
                     })
                     .then(response => {
-                        console.log(response);
+
                     })
                     .catch(error => {
                         console.log('エラー');
-                        console.log(error);
                     });
                 this.message = '';
             }
+        },
+        getTime() {
+            const time = new Date();
+            return time.getHours() + ':' + time.getMinutes();
         }
     },
     mounted() {
         Echo.private('chat')
             .listen('ChatEvent', (e) => {
                 this.chat.message.push(e.message);
+                this.chat.user.push(e.user);
+                this.chat.time.push(e.time);
             });
     }
 });

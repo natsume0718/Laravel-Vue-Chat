@@ -1,13 +1,23 @@
 <template>
   <div>
-    <div class="d-flex justify-content-start mb-4">
-      <div class="img_cont_msg">
+    <div v-if="user !== 'you' " class="d-flex justify-content-start align-items-center mb-4">
+      <div class="img_cont_msg d-flex flex-column">
         <img src class="rounded-circle user_img_msg" />
-        <span>{{ user }}</span>
+        <span class="user_name">{{ user }}</span>
       </div>
-      <div class="msg_cotainer">
+      <div class="msg_cotainer d-flex flex-column">
         <slot></slot>
-        <span class="msg_time">Today</span>
+        <span class="msg_time">{{ time }}</span>
+      </div>
+    </div>
+    <div v-else class="d-flex justify-content-end align-items-center mb-4">
+      <div class="msg_cotainer_send d-flex flex-column">
+        <slot></slot>
+        <span class="msg_time_send">{{ time }}</span>
+      </div>
+      <div class="img_cont_msg d-flex flex-column">
+        <img src alt class="rounded-circle user_img_msg" />
+        <span class="user_name">{{ user }}</span>
       </div>
     </div>
   </div>
@@ -15,6 +25,13 @@
 
 <script>
 export default {
-  props: ["user"]
+  props: {
+    user: {
+      type: String
+    },
+    time: {
+      type: String
+    }
+  }
 };
 </script>

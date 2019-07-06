@@ -14,7 +14,8 @@ class ChatSendDomain
         $user = Auth::user();
 
         $message = $request->message;
-
-        return event(new ChatEvent($message, $user));
+        event(new ChatEvent($message, $user));
+        $data  = array('user' => $user->name, 'message' => $message);
+        return $data;
     }
 }
