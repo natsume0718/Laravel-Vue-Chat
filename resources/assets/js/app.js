@@ -24,7 +24,7 @@ const app = new Vue({
         send() {
             if (this.message.length > 1) {
                 this.chat.message.push(this.message);
-                this.chat.user.push('you');
+                this.chat.user.push(GlobalInfo.user.name);
                 this.chat.time.push(this.getTime());
 
                 axios.post('send', {

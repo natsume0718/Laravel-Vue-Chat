@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div v-if="user !== 'you' " class="d-flex justify-content-start align-items-center mb-4">
+    <div v-if="user !== this.authUser" class="d-flex justify-content-start align-items-center mb-4">
       <div class="img_cont_msg d-flex flex-column">
-        <img src class="rounded-circle user_img_msg" />
+        <img
+          :src="'https://natsume.site/laravel-chat/public/images/human.png'"
+          class="rounded-circle user_img_msg"
+        />
         <span class="user_name">{{ user }}</span>
       </div>
       <div class="msg_cotainer d-flex flex-column">
@@ -16,7 +19,10 @@
         <span class="msg_time_send">{{ time }}</span>
       </div>
       <div class="img_cont_msg d-flex flex-column">
-        <img src alt class="rounded-circle user_img_msg" />
+        <img
+          :src="'https://natsume.site/laravel-chat/public/images/human.png'"
+          class="rounded-circle user_img_msg"
+        />
         <span class="user_name">{{ user }}</span>
       </div>
     </div>
@@ -32,6 +38,11 @@ export default {
     time: {
       type: String
     }
+  },
+  data() {
+    return {
+      authUser: GlobalInfo.user.name
+    };
   }
 };
 </script>

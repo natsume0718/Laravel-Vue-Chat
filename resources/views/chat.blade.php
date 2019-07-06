@@ -9,6 +9,19 @@
     <title>Chat</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chatstyle.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script>
+        window.GlobalInfo = {!! json_encode([
+            'csrfToken'=> csrf_token(),
+            'user'=> [
+                'authenticated' => Auth::check(),
+                'id' => Auth::check() ? Auth::id() : null,
+                'name' => Auth::check() ? Auth::user()->name : null, 
+                ]
+            ])
+        !!};
+    </script>
 </head>
 
 <body>
@@ -25,10 +38,9 @@
                         <div class="input-group-append">
                             <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                         </div>
-                        <input type="text" name="" class="form-control type_msg" placeholder="メッセージ" v-model="message"
-                            v-on:keyup.enter='send'>
+                        <input type="text" name="" class="form-control type_msg" placeholder="メッセージ" v-model="message">
                         <div class="input-group-append">
-                            <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+                            <span class="input-group-text send_btn"><i class="fas fa-location-arrow" v-on:click="send"></i></span>
                         </div>
                     </div>
                 </div>
